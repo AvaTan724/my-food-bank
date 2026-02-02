@@ -13,56 +13,52 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 flex flex-col items-center p-4">
-      {/* Header Section */}
-      <div className="max-w-2xl w-full text-center mb-6">
-        <h1 className="text-4xl font-bold text-green-700 mt-6">
-          Sunway City Food Bank
-        </h1>
-        <p className="text-gray-600 mt-2">
-          Connecting Donors, Reporters, and those in need across Selangor.
-        </p>
-      </div>
+    <main className="min-h-screen bg-gray-100 flex flex-col font-sans">
+      {/* 1. Professional Navigation Bar */}
+      <nav className="bg-green-700 text-white p-4 shadow-md flex justify-between items-center px-8">
+        <h1 className="text-2xl font-bold tracking-tight">Sunway City Food Bank</h1>
+        <div className="flex gap-4">
+          <button 
+            onClick={getMyLocation}
+            className="bg-white text-green-700 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition text-sm shadow-sm"
+          >
+            Check My GPS
+          </button>
+          <a 
+            href="https://www.foodbankmalaysia.com/" 
+            target="_blank" 
+            className="border border-white px-4 py-2 rounded-lg text-sm hover:bg-green-800 transition"
+          >
+            Official Website
+          </a>
+        </div>
+      </nav>
 
-      {/* NEW: Your AppSheet Window */}
-      <div className="w-full flex justify-center mb-8">
-        <div className="relative border-4 border-white shadow-2xl rounded-[2.5rem] overflow-hidden bg-white">
+      {/* 2. Full-Screen Map Section */}
+      <section className="flex-grow flex flex-col p-4 md:p-6">
+        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden flex-grow border border-gray-200 relative">
           <iframe 
             src="https://www.appsheet.com/start/f1a6d2a0-9b9a-4adb-a62c-f827b888271c" 
-            width="360" 
-            height="600" 
-            className="rounded-[2rem]"
-            allow="geolocation"
+            className="w-full h-full min-h-[600px]"
+            /* Updated 'allow' string with wildcards (*) to help GPS fix in iframes */
+            allow="geolocation *; camera *; microphone *; clipboard-write *"
+            title="Sunway Food Bank Management System"
           />
         </div>
-      </div>
+      </section>
 
-      {/* ORIGINAL: Combined Buttons Section */}
-      <div className="flex flex-col gap-4 w-full max-w-xs mb-10">
-        <a 
-          href="https://www.foodbankmalaysia.com/" 
-          target="_blank" 
-          className="bg-green-600 text-white py-3 px-6 rounded-lg font-semibold text-center hover:bg-green-700 transition"
-        >
-          Official FoodBank Malaysia
-        </a>
-
-        {/* Your Original GPS Button */}
-        <button 
-          onClick={getMyLocation}
-          className="border-2 border-green-600 text-green-600 py-3 px-6 rounded-lg font-semibold hover:bg-green-50 transition"
-        >
-          Check My GPS Coordinates
-        </button>
-      </div>
-
-      {/* Impact Stats Footer */}
-      <div className="w-full max-w-sm p-4 bg-white rounded-xl shadow-sm border border-gray-100 text-center">
-        <h2 className="text-lg font-bold">Sunway Impact Stats</h2>
-        <p className="text-sm text-gray-500 italic">
-          "You helped save 3kg of food and fed 5 people."
-        </p>
-      </div>
+      {/* 3. Footer Stats (Desktop Friendly) */}
+      <footer className="bg-white border-t p-4 flex flex-wrap justify-around text-sm text-gray-600 font-medium">
+        <div className="flex items-center gap-2">
+          <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+          <span>Donors Active in Selangor</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
+          <span>Needs Reported in Sunway</span>
+        </div>
+        <p className="italic text-gray-400">Sunway City Community Project © 2026</p>
+      </footer>
     </main>
   );
 }
